@@ -16,7 +16,7 @@ public class Token {
     private String valeur;
 
     @Column(name = "code_validation")
-    private Short codeValidation;
+    private Integer codeValidation;
 
     @Column(name = "login_valide", nullable = false)
     private boolean isValide;
@@ -30,7 +30,7 @@ public class Token {
 
     public Token() {}
 
-    public Token(String valeur, Short codeValidation, boolean isValide, LocalDateTime expiration, Utilisateur utilisateur) {
+    public Token(String valeur, Integer codeValidation, boolean isValide, LocalDateTime expiration, Utilisateur utilisateur) {
         this.valeur = valeur;
         this.codeValidation = codeValidation;
         this.isValide = isValide;
@@ -55,11 +55,11 @@ public class Token {
         this.valeur = valeur;
     }
 
-    public Short getCodeValidation() {
+    public Integer getCodeValidation() {
         return codeValidation;
     }
 
-    public void setCodeValidation(Short codeValidation) {
+    public void setCodeValidation(int codeValidation) {
         this.codeValidation = codeValidation;
     }
 
