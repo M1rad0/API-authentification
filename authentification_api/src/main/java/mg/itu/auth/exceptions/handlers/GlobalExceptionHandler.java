@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import mg.itu.auth.exceptions.CannotFindUserException;
 import mg.itu.auth.exceptions.EmailAlreadyUsedException;
+import mg.itu.auth.exceptions.IdentifiantAlreadyUsedException;
 import mg.itu.auth.exceptions.InvalidValidationCodeException;
 import mg.itu.auth.exceptions.responses.ApiErrorResponse;
 
@@ -15,6 +17,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EmailAlreadyUsedException.class)
     public ResponseEntity<ApiErrorResponse> handleIllegalArgument(EmailAlreadyUsedException ex) {
         ApiErrorResponse errorResponse = new ApiErrorResponse(400, 1000, ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    // Handle identifiant already used (same error code)
+    @ExceptionHandler(IdentifiantAlreadyUsedException.class)
+    public ResponseEntity<ApiErrorResponse> handleIllegalArgument(IdentifiantAlreadyUsedException ex) {
+        ApiErrorResponse errorResponse = new ApiErrorResponse(400, 1000, ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    // Handle cannot find user already used (3000 error code)
+    @ExceptionHandler(CannotFindUserException.class)
+    public ResponseEntity<ApiErrorResponse> handleIllegalArgument(CannotFindUserException ex) {
+        ApiErrorResponse errorResponse = new ApiErrorResponse(400, 3000, ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
