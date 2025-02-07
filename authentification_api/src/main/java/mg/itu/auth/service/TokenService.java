@@ -34,6 +34,7 @@ public class TokenService {
         token.setUtilisateur(utilisateur);
         token.setCodeValidation(validationCodeService.generateValidationCode());
         token.setValide(false); // Non valide au départ
+        token.setLogged(true);
         token.setExpiration(LocalDateTime.now().plusMinutes(tokenLifeSpan));
 
         return tokenRepository.save(token);
