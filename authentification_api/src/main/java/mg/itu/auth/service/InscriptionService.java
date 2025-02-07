@@ -2,7 +2,9 @@ package mg.itu.auth.service;
 
 import org.springframework.stereotype.Service;
 
+import mg.itu.auth.exceptions.CannotFindUserException;
 import mg.itu.auth.exceptions.EmailAlreadyUsedException;
+import mg.itu.auth.exceptions.IdentifiantAlreadyUsedException;
 import mg.itu.auth.exceptions.InvalidValidationCodeException;
 import mg.itu.auth.models.Utilisateur;
 import mg.itu.auth.repositories.UtilisateurRepository;
@@ -32,8 +34,12 @@ public class InscriptionService {
     @Transactional
     public void inscrire(String email, String identifiant, String motDePasse) throws MessagingException {
         // Vérification si l'utilisateur existe déjà
-        if (utilisateurRepository.existsByEmailOrIdentifiant(email, identifiant)) {
-            throw new EmailAlreadyUsedException("Email ou identifiant déjà utilisé.");
+        if (utilisateurRepository.existsByEmail(email)) {
+            throw new EmailAlreadyUsedException("Email déjà utilisé.");
+        }
+
+        if(utilisateurRepository.existsByIdentifiant(identifiant)){
+            throw new IdentifiantAlreadyUsedException("Identifiant déjà utilisé");
         }
 
         // Hachage du mot de passe
@@ -53,7 +59,7 @@ public class InscriptionService {
     @Transactional
     public void validateInscription(String email, int codeValidation) {
         Utilisateur utilisateur = utilisateurRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("Utilisateur non trouvé"));
+                .orElseThrow(() -> new CannotFindUserException("Utilisateur non trouvé"));
 
         if (utilisateur.getCodeValidation() == codeValidation) {
             utilisateur.setValide(true);

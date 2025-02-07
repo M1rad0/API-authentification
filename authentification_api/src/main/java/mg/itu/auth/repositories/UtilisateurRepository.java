@@ -9,6 +9,7 @@ import mg.itu.auth.models.Utilisateur;
 
 @Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
-    boolean existsByEmailOrIdentifiant(String email, String identifiant);
+    boolean existsByEmail(String email);
+    boolean existsByIdentifiant(String identifiant);
     Optional<Utilisateur> findByEmail(String email);
 }
