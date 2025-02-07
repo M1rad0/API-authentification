@@ -42,6 +42,11 @@ public class Utilisateur {
     }
 
     // Getters et Setters
+    public Utilisateur(Long id, String identifiant, String email) {
+        this.id = id;
+        this.identifiant = identifiant;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

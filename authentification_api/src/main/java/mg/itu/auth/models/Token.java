@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Token")
 public class Token {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_token")
@@ -24,17 +23,21 @@ public class Token {
     @Column(name = "date_expiration", nullable = false)
     private LocalDateTime expiration;
 
+    @Column(name = "is_logged", nullable = false)
+    private boolean isLogged;
+
     @ManyToOne
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
 
     public Token() {}
 
-    public Token(String valeur, Integer codeValidation, boolean isValide, LocalDateTime expiration, Utilisateur utilisateur) {
+    public Token(String valeur, Integer codeValidation, boolean isValide, boolean isLogged, LocalDateTime expiration, Utilisateur utilisateur) {
         this.valeur = valeur;
         this.codeValidation = codeValidation;
         this.isValide = isValide;
         this.expiration = expiration;
+        this.isLogged=isLogged;
         this.utilisateur = utilisateur;
     }
     // Getters et Setters
@@ -85,5 +88,13 @@ public class Token {
 
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
+    }
+
+    public boolean isLogged() {
+        return isLogged;
+    }
+
+    public void setLogged(boolean isLogged) {
+        this.isLogged = isLogged;
     }    
 }
