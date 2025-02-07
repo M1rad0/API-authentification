@@ -32,7 +32,7 @@ public class TokenService {
         Token token = new Token();
         token.setValeur(tokenValue);
         token.setUtilisateur(utilisateur);
-        token.setCodeValidation((short)validationCodeService.generateValidationCode());
+        token.setCodeValidation(validationCodeService.generateValidationCode());
         token.setValide(false); // Non valide au départ
         token.setExpiration(LocalDateTime.now().plusMinutes(tokenLifeSpan));
 
