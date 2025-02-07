@@ -3,7 +3,7 @@ package mg.itu.auth.service;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 
-import javax.mail.MessagingException;
+import jakarta.mail.MessagingException;
 
 @Service
 public class MailService {

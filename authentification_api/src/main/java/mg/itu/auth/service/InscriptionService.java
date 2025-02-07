@@ -7,8 +7,8 @@ import mg.itu.auth.exceptions.InvalidValidationCodeException;
 import mg.itu.auth.models.Utilisateur;
 import mg.itu.auth.repositories.UtilisateurRepository;
 
-import javax.mail.MessagingException;
-import javax.transaction.Transactional;
+import jakarta.mail.MessagingException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class InscriptionService {

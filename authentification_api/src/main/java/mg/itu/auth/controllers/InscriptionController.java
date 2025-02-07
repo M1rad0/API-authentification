@@ -1,6 +1,6 @@
 package mg.itu.auth.controllers;
 
-import javax.mail.MessagingException;
+import jakarta.mail.MessagingException;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
