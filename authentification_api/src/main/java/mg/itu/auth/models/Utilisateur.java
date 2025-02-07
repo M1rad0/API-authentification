@@ -3,7 +3,7 @@ package mg.itu.auth.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Utilisateur")
@@ -26,14 +26,14 @@ public class Utilisateur {
     private boolean isValide;
 
     @Column(name = "code_validation")
-    private Short codeValidation; // SMALLINT correspond à Short en Java
+    private Integer codeValidation;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Token> tokens = new ArrayList<>();
 
     public Utilisateur() {}
 
-    public Utilisateur(String identifiant, String email, String motDePasse, boolean isValide, Short codeValidation) {
+    public Utilisateur(String identifiant, String email, String motDePasse, boolean isValide, Integer codeValidation) {
         this.identifiant = identifiant;
         this.email = email;
         this.motDePasse = motDePasse;
@@ -42,6 +42,11 @@ public class Utilisateur {
     }
 
     // Getters et Setters
+    public Utilisateur(Long id, String identifiant, String email) {
+        this.id = id;
+        this.identifiant = identifiant;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
@@ -83,11 +88,11 @@ public class Utilisateur {
         this.isValide = isValide;
     }
 
-    public Short getCodeValidation() {
+    public Integer getCodeValidation() {
         return codeValidation;
     }
 
-    public void setCodeValidation(Short codeValidation) {
+    public void setCodeValidation(Integer codeValidation) {
         this.codeValidation = codeValidation;
     }
 
