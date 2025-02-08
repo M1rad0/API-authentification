@@ -26,6 +26,9 @@ public class Token {
     @Column(name = "is_logged", nullable = false)
     private boolean isLogged;
 
+    @Column(name = "nbTentative")
+    private Integer nbTentative = 0;
+
     @ManyToOne
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
@@ -96,5 +99,17 @@ public class Token {
 
     public void setLogged(boolean isLogged) {
         this.isLogged = isLogged;
-    }    
+    }
+
+    public void setCodeValidation(Integer codeValidation) {
+        this.codeValidation = codeValidation;
+    }
+
+    public Integer getNbTentative() {
+        return nbTentative;
+    }
+
+    public void setNbTentative(Integer nbTentative) {
+        this.nbTentative = nbTentative;
+    }
 }

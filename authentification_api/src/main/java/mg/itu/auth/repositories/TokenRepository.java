@@ -9,5 +9,5 @@ import mg.itu.auth.models.Token;
 
 @Repository
 public interface TokenRepository extends JpaRepository<Token, Long> {
-    Optional<Token> findByTokenValue(String tokenValue);
+    Optional<Token> findByValeur(String tokenValue);
 }
