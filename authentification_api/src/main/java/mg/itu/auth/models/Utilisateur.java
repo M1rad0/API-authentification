@@ -28,6 +28,12 @@ public class Utilisateur {
     @Column(name = "code_validation")
     private Integer codeValidation;
 
+    @Column(name = "nb_tentative_mail")
+    private Integer nbTentativeMail;
+
+    @Column(name = "nb_tentative_pass_word")
+    private Integer nbTentativePassWord;
+
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Token> tokens = new ArrayList<>();
 
@@ -102,5 +108,21 @@ public class Utilisateur {
 
     public void setTokens(List<Token> tokens) {
         this.tokens = tokens;
-    }    
+    }
+
+    public Integer getNbTentativeMail() {
+        return nbTentativeMail;
+    }
+
+    public void setNbTentativeMail(int nbTentativeMail) {
+        this.nbTentativeMail = nbTentativeMail;
+    }
+
+    public Integer getNbTentativePassWord() {
+        return nbTentativePassWord;
+    }
+
+    public void setNbTentativePassWord(int nbTentativePassWord) {
+        this.nbTentativePassWord = nbTentativePassWord;
+    }        
 }
